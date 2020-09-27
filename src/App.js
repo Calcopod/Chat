@@ -3,9 +3,6 @@ import SignIn from './Components/SignIn/SignIn'
 import { auth , db } from './firebase'
 import { useAuthState }  from 'react-firebase-hooks/auth'
 import MainScreen from './Containers/MainScreen/MainScreen'
-
-import firebase from 'firebase'
-import { uuid } from '@jsweb/randkey'
 import CreateChatRoom from './Components/CreateChatRoom/CreateChatRoom'
 
 export default function App() {
