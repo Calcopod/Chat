@@ -17,7 +17,13 @@ const provider = new firebase.auth.GoogleAuthProvider();
 
 const db = firebase.firestore();
 
-const signIn = () => auth.signInWithPopup(provider)
+const signIn = async () => {
+  const data = await auth.signInWithPopup(provider)
+  const users = db.collection('users')
+  users.doc( data.user.uid ).set({
+    initialField: ""
+  })
+}
 
 const signOut =  () => auth.signOut()
 
