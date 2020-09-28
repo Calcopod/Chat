@@ -13,7 +13,7 @@ export default function App() {
 
   return (
     <div>
-      {
+      {/* {
         user ? <MainScreen user={user} chatRoomId="EK7GYA8nDKA1006FuqyC" /> : <SignIn />
       }
       <button onClick={() => console.log(user)}>Say user</button>
@@ -24,7 +24,12 @@ export default function App() {
 
       {
         user ? <ChatRoomist uid={user.uid}/> : ''
+      } */}
+
+      {
+        user ? <MainScreen user={user} chatRoomId="EK7GYA8nDKA1006FuqyC" /> : <SignIn />
       }
+
     </div>
   )
 }

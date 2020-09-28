@@ -1,0 +1,22 @@
+.container {
+  width: 90%;
+  height: 10vh;
+  background-color: rgb(228, 228, 228);
+
+  display: flex;
+  align-items: center;
+  padding-left: 10%;
+
+  border-bottom: 4px solid rgb(189, 189, 189);
+  transition: 0.5s;
+}
+
+.title {
+  font-weight: 300;
+  font-size: 20px;
+  margin: 0;
+}
+
+.container:hover {
+  background-color: rgb(247, 247, 247);
+}

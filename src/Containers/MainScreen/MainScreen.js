@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from 'react'
+import ChatRoomist from '../../Components/ChatRoomList/ChatRoomist'
 import MessageComp from '../../Components/MessageComp/MessageComp'
 import { signOut , db} from '../../firebase'
+import styles from './MainScreen.module.css'
 
-export default function MainScreen({chatRoomId, user}) {
+export default function MainScreen({user}) {
   const [msgs , setMsgs] = useState([])
+  const [chatRoomId , setCRID] = useState('s')
 
   const chatRoom = db.collection('chat-rooms').doc(chatRoomId)
   const messagesRef = chatRoom.collection('messages').orderBy('sentAt')
@@ -20,23 +23,23 @@ export default function MainScreen({chatRoomId, user}) {
   }, [])
 
   return (
-    <div>
-      <button onClick={signOut}>Sign out</button>
-      <button onClick={() => console.log(msgs)}>Clik</button>
+    <div className={styles.main}>
+      <nav className={styles.nav}>
+        <img src="#" alt="logo" className={styles.logo}/>
 
-      {
-        msgs.map( (msg , i) => (
-          <MessageComp
-          content={msg.content}
-          name={msg.name}
-          photoURL={msg.photoURL}
-          uid={msg.uid}
-          user={user}
-          key={i}
-          />
-        ) )
-      }
+        <button onClick={signOut} className={styles.btn}>Sign Out</button>
+      </nav>
       
+      <div className={styles.grid}>
+        <div className={styles.chatRooms}>
+          <ChatRoomist uid={user.uid} setRoom={setCRID}/>
+        </div>
+
+        <div className={styles.chatPannel}>
+a
+        </div>
+      </div>
+
     </div>
   )
 }

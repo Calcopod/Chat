@@ -8,10 +8,10 @@ export default function CreateChatRoom() {
 
   const handleCreateChatRoom = async () => {
     const chatRooms = db.collection('chat-rooms')
-
-    const newRoom = await chatRooms.add({
+    const random = uuid()
+    const newRoom = await chatRooms.doc(uuid).set({
       createdAt: firebase.firestore.Timestamp.now(),
-      id: uuid(),
+      id: random,
       name: name,
     })
 
