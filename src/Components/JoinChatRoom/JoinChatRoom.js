@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { db } from '../../firebase'
+import styles from './JoinChatRoom.module.css'
 
 export default function JoinChatRoom({user}) {
   const [inp, setInp] = useState("")
@@ -26,8 +27,8 @@ export default function JoinChatRoom({user}) {
 
   return (
     <div>
-      <input placeholder="Enter a chatroom" value={inp} onChange={(e) => setInp(e.target.value)} />
-      <button onClick={handleJoin}>Join</button>
+      <input className={styles.inp} placeholder="Enter a chatroom" value={inp} onChange={(e) => setInp(e.target.value)} />
+      <button className={styles.btn} onClick={handleJoin}>Join</button>
     </div>
   )
 }

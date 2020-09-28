@@ -1,9 +1,10 @@
 import React, {useState} from 'react'
 import firebase from 'firebase'
 import { db } from '../../firebase'
+import styles from './PostMessage.module.css'
 
 export default function PostMessage({ chatRoomId, user }) {
-  const [msg , setMsg] = useState()
+  const [msg , setMsg] = useState('')
 
   const handlePostMessage = async () => {
     const chatRoom = db.collection('chat-rooms').doc(chatRoomId)
@@ -21,9 +22,9 @@ export default function PostMessage({ chatRoomId, user }) {
   }
 
   return (
-    <div>
-      <textarea value={msg} onChange={(e) => setMsg(e.target.value)} rows="10" cols="50"></textarea>
-      <button onClick={handlePostMessage}>Post message</button>
-    </div>
+    <>
+      <input className={styles.inp} value={msg} onChange={(e) => setMsg(e.target.value)} />
+      <button className={styles.btn} onClick={handlePostMessage}>Post message</button>
+    </>
   )
 }

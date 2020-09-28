@@ -1,0 +1,19 @@
+.inp {
+  width: 70%;
+  height: 35%;
+  padding: 15px;
+
+  border-radius: 25px;
+
+  border: none;
+
+  font-size: 22px;
+}
+
+.inp:focus {
+  outline: none;
+}
+
+.btn {
+  height: 50%;
+}

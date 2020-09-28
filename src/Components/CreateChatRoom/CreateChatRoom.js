@@ -6,20 +6,26 @@ import { db } from '../../firebase'
 export default function CreateChatRoom() {
   const [name , setName] = useState('')
 
+  const copyToClipboard = text => {
+    var input = document.body.appendChild(document.createElement("input"));
+    input.value = text;
+    input.focus();
+    input.select();
+    document.execCommand('copy');
+    input.parentNode.removeChild(input);
+  }
+
   const handleCreateChatRoom = async () => {
     const chatRooms = db.collection('chat-rooms')
     const random = uuid()
-    const newRoom = await chatRooms.doc(uuid).set({
+    await chatRooms.doc(random).set({
       createdAt: firebase.firestore.Timestamp.now(),
       id: random,
       name: name,
     })
 
-    chatRooms.doc(newRoom.id).collection('messages').add({
-      initialField: ''
-    })
-
     setName('')
+    copyToClipboard(random)
   }
 
   return (

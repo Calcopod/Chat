@@ -6,19 +6,23 @@ import styles from './ChatRoomist.module.css'
 
 export default function ChatRoomist({uid, setRoom}) {
   const [chatRooms , setChatRooms] = useState([])
-  const chatRoomField = db.collection('users').doc(uid)
-  const chatRoomRef = db.collection('chat-rooms')
 
   useEffect(() => {
-    const getUserChatRooms = async () => {
-      var data = await (await chatRoomField.get()).data().chatrooms
-      data.map( async id => {
-        const dataObj = await (await chatRoomRef.doc(id).get()).data()
-        setChatRooms(old => [...old , dataObj])
+    const chatRoomField = db.collection('users').doc(uid)
+    const chatRoomRef = db.collection('chat-rooms')
+    const fetchData = async () => {
+      db.collection('users').doc(uid).onSnapshot( async () => {
+        var data = await (await chatRoomField.get()).data().chatrooms
+        let final = [];
+        data.map( async (id, i) => {
+          const dataObj = await (await chatRoomRef.doc(id).get()).data()
+          final.push(dataObj)
+          if ( i === data.length - 1 ) setChatRooms(final)
+        })
       })
     }
-
-    getUserChatRooms()
+    fetchData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

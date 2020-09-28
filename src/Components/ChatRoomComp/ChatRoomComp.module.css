@@ -9,6 +9,9 @@
 
   border-bottom: 4px solid rgb(189, 189, 189);
   transition: 0.5s;
+
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .title {
