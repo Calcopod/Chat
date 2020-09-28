@@ -1,14 +1,15 @@
 import React from 'react'
 import SignIn from './Components/SignIn/SignIn'
-import { auth , db } from './firebase'
+import { auth } from './firebase'
 import { useAuthState }  from 'react-firebase-hooks/auth'
 import MainScreen from './Containers/MainScreen/MainScreen'
 import CreateChatRoom from './Components/CreateChatRoom/CreateChatRoom'
 import JoinChatRoom from './Components/JoinChatRoom/JoinChatRoom'
+import PostMessage from './Components/PostMessage/PostMessage'
 
 export default function App() {
   const [user] = useAuthState(auth)
-  
+
   return (
     <div>
       {
@@ -18,6 +19,7 @@ export default function App() {
 
       <CreateChatRoom />
       <JoinChatRoom user={user} />
+      <PostMessage user={user} chatRoomId="EK7GYA8nDKA1006FuqyC"/>
     </div>
   )
 }
