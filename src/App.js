@@ -13,7 +13,7 @@ export default function App() {
   return (
     <div>
       {
-        user ? <MainScreen /> : <SignIn />
+        user ? <MainScreen user={user} chatRoomId="EK7GYA8nDKA1006FuqyC" /> : <SignIn />
       }
       <button onClick={() => console.log(user)}>Say user</button>
 
