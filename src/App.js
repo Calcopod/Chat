@@ -6,6 +6,7 @@ import MainScreen from './Containers/MainScreen/MainScreen'
 import CreateChatRoom from './Components/CreateChatRoom/CreateChatRoom'
 import JoinChatRoom from './Components/JoinChatRoom/JoinChatRoom'
 import PostMessage from './Components/PostMessage/PostMessage'
+import ChatRoomist from './Components/ChatRoomList/ChatRoomist'
 
 export default function App() {
   const [user] = useAuthState(auth)
@@ -20,6 +21,10 @@ export default function App() {
       <CreateChatRoom />
       <JoinChatRoom user={user} />
       <PostMessage user={user} chatRoomId="EK7GYA8nDKA1006FuqyC"/>
+
+      {
+        user ? <ChatRoomist uid={user.uid}/> : ''
+      }
     </div>
   )
 }

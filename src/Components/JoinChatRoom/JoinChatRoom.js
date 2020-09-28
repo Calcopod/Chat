@@ -5,16 +5,8 @@ export default function JoinChatRoom({user}) {
   const [inp, setInp] = useState("")
 
   const checkChatroom = async () => {
-    const chatRooms = db.collection('chat-rooms')
-
-    const query = await chatRooms.where('id', '==', inp).get()
-    const data = [];
-    query.forEach(doc => {
-      data.push( doc.data() )
-    })
-    
-    if(typeof data[0] !== 'undefined') return true
-    return false
+    const chatRoom = db.collection('chat-rooms').doc(inp)
+    return (await chatRoom.get()).exists
   }
 
   const handleJoin = async () => {

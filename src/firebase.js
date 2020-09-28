@@ -20,9 +20,14 @@ const db = firebase.firestore();
 const signIn = async () => {
   const data = await auth.signInWithPopup(provider)
   const users = db.collection('users')
-  users.doc( data.user.uid ).set({
-    initialField: ""
-  })
+
+  const userRef = users.doc(data.user.uid)
+
+  if ( typeof (await userRef.get()).get('chatrooms') == 'undefined') {
+    users.doc( data.user.uid ).set({
+      chatrooms : []
+    })
+  }
 }
 
 const signOut =  () => auth.signOut()
